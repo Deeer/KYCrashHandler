@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param data 上传的crash数据
  @param completion 回调
  */
-- (void)uploadCrashLog:(NSData *)data
+- (void)uploadCrashLog:(NSData * _Nullable )data
         withCompletion:( nullable void(^)(BOOL isSuccess, NSError *error))completion;
 
 @end

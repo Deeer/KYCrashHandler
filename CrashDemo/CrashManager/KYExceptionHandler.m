@@ -18,6 +18,18 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSString *name = [exception name];//异常类型
     NSLog(@"exception type: %@\n crash reason: %@\n userInfo:%@\n call stack info: %@\n", name, reason, arr, exception.userInfo);
     
+    // 收到exception 进行进一步处理
+    [KYExceptionHandler handleException:exception];
+}
+
+// 希望在捕获的时候能处理其他东西
+@interface KYExceptionHandler ()
+
+@end
+
+@implementation KYExceptionHandler
+
++ (void)handleException:(NSException *)exception {
     // 内容组织
     NSMutableDictionary *exceptionDict = [NSMutableDictionary dictionary];
     [exceptionDict setValue:exception.name forKey:@"name"];
@@ -34,11 +46,5 @@ void uncaughtExceptionHandler(NSException *exception) {
     // 写入本地文件中
     [KYCrashLocalStorage saveCrashLogLocallyWithDict:exceptionDict];
 }
-
-@interface KYExceptionHandler ()
-
-@end
-
-@implementation KYExceptionHandler
 
 @end

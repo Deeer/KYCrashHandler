@@ -11,9 +11,7 @@
 
 #import "KYCrashBusinessHandler.h"
 @implementation AppDelegate (KYCrashCollection)
-
 #pragma mark - lifeCyele
-
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -25,8 +23,7 @@
     });
 }
 
-#pragma mark - privateMethod
-
+#pragma mark - logical
 - (BOOL)swizzled_application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
@@ -34,18 +31,20 @@
     // 本地存在crash文件
     if (1) {
         // TODO: 处理连续崩溃逻辑: 若本地存在crash 文件 进入的 连续闪退判段逻辑
+        //
         if (1) { // TODO:符合连续闪退
                  // TODO:进入修复流程 -- 显示页面 or 直接修复
             
+            
         }
 
-        
+        // 日志部分逻辑
         [[KYCrashBusinessHandler shareInstance] uploadContentWithCompletion:^(BOOL isSuccess, NSError * _Nonnull error) {
             // 我也不知道这里可以做什么...
         }];
         
     } else {
-        // 调用原生方法
+        // 调用原始方法
         [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
     }
     return YES;
@@ -59,6 +58,8 @@
     [self swizzled_applicationWillTerminate:application];
 }
 
+
+#pragma mark - base
 
 // swizzled
 + (void)swizzleOriginMethod:(SEL)originSelector WithExchangeMethod:(SEL)swizzledSelector {

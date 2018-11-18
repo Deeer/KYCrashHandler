@@ -9,9 +9,37 @@
 #import "KYCrashBusinessHandler.h"
 #import "KYCrashLogUploadOperation.h"
 #import "KYCrashLocalStorage.h"
+#import "KYCrashUploader.h"
+#import <objc/runtime.h>
+
+static inline NSArray * findSubClass(Class certainClass) {
+    
+    int numOfSubclasses = 0;
+    Class *classes = NULL;
+    // 获取所有已注册的类
+    numOfSubclasses = objc_getClassList(NULL, 0);
+    
+    if (numOfSubclasses <= 0) {
+        return [NSMutableArray array];
+    }
+    
+    classes = (Class *)malloc(sizeof(Class) * numOfSubclasses);
+    objc_getClassList(classes, numOfSubclasses);
+    NSArray *classArray = @[];
+    for (int i = 0; i < numOfSubclasses; i++) {
+        if (certainClass == class_getSuperclass(classes[i])) {
+            classArray = @[classes[i]];
+            break;
+        }
+    }
+    
+    free(classes);
+    return classArray;
+}
+
 @interface KYCrashBusinessHandler()
 
-@property(nonatomic, strong) NSObject <KYCrashLogUploadOperation>*uploader;
+@property(nonatomic, strong) KYCrashUploader *uploader;
 
 @end
 
@@ -50,5 +78,15 @@
 }
 
 
-
+#pragma mark - setterAndGetter
+- (KYCrashUploader *)uploader {
+    if (_uploader) {
+        Class class = [findSubClass([KYCrashUploader class]) firstObject];
+        
+        NSAssert(class, @"请继承 KYCrashUploader 以实现日志上传功能");
+        
+        _uploader = [[class alloc] init];
+    }
+    return _uploader;
+}
 @end

@@ -10,8 +10,4 @@
 
 @implementation KYCrashUploader
 
-- (void)uploadCrashLog:(NSString *)crashLog withCompletion:(id)completion {
-    
-}
-
 @end
