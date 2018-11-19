@@ -14,15 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KYCrashRepairViewController : UIViewController
 
 /**
- 获取的修复完成回掉
- */
-- (void)getFinshRepairWithCallback:(finishedRepairCallback)block;
-
-/**
  交给子类重写
  */
-- (void)didFinishRepair NS_REQUIRES_SUPER;
-
+- (void)didFinishRepairWithCompletion:(nonnull finishedRepairCallback)block NS_REQUIRES_SUPER;
 @end
 
 NS_ASSUME_NONNULL_END

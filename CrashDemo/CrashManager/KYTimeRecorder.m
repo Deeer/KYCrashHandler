@@ -19,7 +19,7 @@ double KY_CRASH_TIME = 5.0;
 
 @implementation KYTimeRecorder
 
-static inline NSString * CRASHCONDITION() {
+NSString * CRASHCONDITION() {
     return [NSString stringWithFormat:@"%@%@%@%@%@",
             KY_LAUNCHERTIMEIDENTIFIER,
             KY_CRASHTIMEIDENTIFIER,
@@ -62,7 +62,7 @@ static inline NSString * CRASHCONDITION() {
 + (BOOL)isInContinuousTerminateStatus {
     NSArray * records = [self getAllEventsRecordes];
     // 当分析数据不足时,不进入分析逻辑
-    if (records.count <= 5) {
+    if (records.count < KY_CRASH_TIME) {
         return NO;
     }
     
@@ -76,14 +76,13 @@ static inline NSString * CRASHCONDITION() {
     NSString * conditionStr ;
     for (NSDictionary *dict in records) {
         NSString *key = [[dict allKeys] firstObject];
-        conditionStr = [NSString stringWithFormat:@"%@%@",conditionStr,key];
+        conditionStr = [NSString stringWithFormat:@"%@%@",conditionStr ? : @"",key];
     }
     
     // 状态分析
-    if (![conditionStr isEqualToString:CRASHCONDITION()]) {
+    if (![conditionStr containsString:CRASHCONDITION()]) {
         return NO;
     }
-    
     
     // 时间分析
     // 前两次崩溃时间都是在五秒内的
@@ -100,7 +99,7 @@ static inline NSString * CRASHCONDITION() {
 
 + (double)getValueWithIndex:(NSInteger)index {
     NSArray * records = [self getAllEventsRecordes];
-    return [[[records[index] values] firstObject] doubleValue];
+    return [[[records[index] allValues] firstObject] doubleValue];
 }
 
 + (void)addRecordEventWithDict:(NSDictionary*)eventDict {
@@ -108,10 +107,10 @@ static inline NSString * CRASHCONDITION() {
     [records addObject:eventDict];
     
     // 仅记录最新的五个
-    if (records.count > 5) {
-        records = [[records subarrayWithRange:NSMakeRange(1, 5)] mutableCopy];
-        [[NSUserDefaults standardUserDefaults] setValue:records forKey:KY_TimeRecord];
+    if (records.count > KY_CRASH_TIME) {
+        records = [[records subarrayWithRange:NSMakeRange(1, KY_CRASH_TIME)] mutableCopy];
     }
+    [[NSUserDefaults standardUserDefaults] setValue:records forKey:KY_TimeRecord];
 }
 
 @end

@@ -58,6 +58,14 @@ static inline NSArray * findSubClass(Class certainClass) {
     return handler;
 }
 
+- (BOOL)exsitRepairViewController {
+    return self.repairViewController;
+}
+
+- (BOOL)exsitUploader {
+    return self.uploader;
+}
+
 #pragma mark - logical content
 - (void)uploadContentWithCompletion:(void(^)(BOOL isSuccess, NSError * _Nonnull error))completion {
     NSAssert(!self.uploader, @"未设置上传对象");
@@ -73,7 +81,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 #pragma mark - options
 + (void)openLog:(BOOL)isopen {
     // TODO: 单独log类
-    //
+    // 
 }
 
 - (void)addCustionContent:(NSString *)content {
@@ -81,43 +89,23 @@ static inline NSArray * findSubClass(Class certainClass) {
     _customContent = content;
 }
 
-- (void)showRepairWithWindow:(UIWindow *)window completion:(void(^)(void))completion {
-    // 是否自定义界面的
+- (void)showRepairInterfaceWithWindow:(UIWindow *)window completion:(void(^)(void))completion {
     if (self.repairViewController) {
-        // 回调交给自类去做去
-        [self.repairViewController getFinshRepairWithCallback:completion];
+        // 设置keywindow
         window.rootViewController = self.repairViewController;
         [window makeKeyAndVisible];
-    } else {
-        // 显示默认的弹窗效果
-        UIViewController *vc = [[UIViewController alloc] init];
-        vc.view.backgroundColor = [UIColor purpleColor];
-        window.rootViewController = vc;
-        [window makeKeyAndVisible];
-        [vc presentViewController:[self showAlertWtihCompletion:completion] animated:YES completion:nil];
+        // 传入回掉
+        [self.repairViewController didFinishRepairWithCompletion:completion];
     }
 }
-
-- (UIAlertController *)showAlertWtihCompletion:(void(^)(void))completion {
-    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"修复" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completion();
-    }];
-    [alertVc addAction:cancleAction];
-    [alertVc addAction:confirmAction];
-    return alertVc;
-}
-
 
 #pragma mark - setterAndGetter
 
 - (KYCrashRepairViewController *)repairViewController {
     if (!_repairViewController) {
         Class class = [findSubClass([KYCrashRepairViewController class]) firstObject];
-        if (!class) {
-            return nil;
-        }
+        NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
+
         _repairViewController = [[class alloc] init];
     }
     return _repairViewController;
@@ -127,7 +115,7 @@ static inline NSArray * findSubClass(Class certainClass) {
     if (!_uploader) {
         Class class = [findSubClass([KYCrashUploader class]) firstObject];
         
-        NSAssert(class, @"请继承 KYCrashUploader 以实现日志上传功能");
+        NSAssert(class, @"❌ 请继承 KYCrashUploader 以实现日志上传功能");
         
         _uploader = [[class alloc] init];
     }

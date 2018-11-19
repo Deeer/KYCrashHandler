@@ -10,6 +10,7 @@
 #import "KYExceptionHandler.h"
 #import <UIKit/UIKit.h>
 
+@class KYCrashRepairViewController;
 typedef NS_ENUM(NSInteger, KYRepairInterfaceType) {
     KYRepairInterfaceDefaultAlert,
     KYRepairInterfaceCustomViewController
@@ -19,9 +20,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KYCrashBusinessHandler : NSObject
 
+
 @property(nonatomic, readonly ,copy) NSString *customContent;
 
 + (KYCrashBusinessHandler *)shareInstance;
+
+
+/**
+ 是否存在上传器
+ */
+- (BOOL)exsitUploader;
+/**
+ 是否存在修复界面
+ */
+- (BOOL)exsitRepairViewController;
 
 /**
  是否开启日志输出
@@ -32,7 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 修复部分
 
-- (void)showRepairWithWindow:(UIWindow *)widnow completion:(void(^)(void))completion;
+/**
+ 展示自定义界面
+ 
+ */
+- (void)showRepairInterfaceWithWindow:(UIWindow *)widnow completion:(nonnull void(^)(void))completion;
 
 #pragma mark - crash部分
 

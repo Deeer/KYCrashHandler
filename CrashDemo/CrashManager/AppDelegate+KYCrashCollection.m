@@ -32,14 +32,15 @@
     [KYTimeRecorder recordTimeWithType:KYTimeRecordTypeLauncher];
     
     // 本地存在crash文件
-    if (1 || [KYCrashLocalStorage existCrashFiles]) {
+    if ([KYCrashLocalStorage existCrashFiles]) {
+        
         /******************闪退处理**********************/
-
-        // 进入闪退判断逻辑
-        if (1 || [KYTimeRecorder isInContinuousTerminateStatus]) {
+        // 进入闪退判断逻辑  && 继承并实现修复界面
+        if ( [[KYCrashBusinessHandler shareInstance] exsitRepairViewController]
+            && [KYTimeRecorder isInContinuousTerminateStatus] ) {
             
             // 进行修复工作
-            [[KYCrashBusinessHandler shareInstance] showRepairWithWindow:self.window completion:^{
+            [[KYCrashBusinessHandler shareInstance] showRepairInterfaceWithWindow:self.window completion:^{
                 // 调用原始方法
                 [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
             }];
@@ -47,9 +48,12 @@
         } else {
             
             /*****************日志部分********************/
-            [[KYCrashBusinessHandler shareInstance] uploadContentWithCompletion:^(BOOL isSuccess, NSError * _Nonnull error) {
-                
-            }];
+            // 继承并实现了上传组建
+            if ([[KYCrashBusinessHandler shareInstance] exsitUploader]) {
+                [[KYCrashBusinessHandler shareInstance] uploadContentWithCompletion:^(BOOL isSuccess, NSError * _Nonnull error) {
+                    
+                }];
+            }
             
             // 调用原始方法
             [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
