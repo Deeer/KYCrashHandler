@@ -9,15 +9,18 @@
 #import "KYExceptionHandler.h"
 #import "KYCrashLocalStorage.h"
 #import "KYCrashBusinessHandler.h"
-
+#import "KYTimeRecorder.h"
 
 // 处理文件内容
 void uncaughtExceptionHandler(NSException *exception) {
+    
     NSArray *arr = [exception callStackSymbols];//当前调用栈信息
     NSString *reason = [exception reason];//崩溃原因
     NSString *name = [exception name];//异常类型
     NSLog(@"exception type: %@\n crash reason: %@\n userInfo:%@\n call stack info: %@\n", name, reason, arr, exception.userInfo);
     
+    // 记录crash 事件
+    [KYTimeRecorder recordTimeWithType:KYTimeRecordTypeCrash];
     // 收到exception 进行进一步处理
     [KYExceptionHandler handleException:exception];
 }

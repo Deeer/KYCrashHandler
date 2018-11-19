@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "KYExceptionHandler.h"
+#import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSInteger, KYRepairInterfaceType) {
+    KYRepairInterfaceDefaultAlert,
+    KYRepairInterfaceCustomViewController
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KYCrashBusinessHandler : NSObject
@@ -25,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 修复部分
 
-
+- (void)showRepairWithWindow:(UIWindow *)widnow completion:(void(^)(void))completion;
 
 #pragma mark - crash部分
 
@@ -42,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param completion 回调
  */
 - (void)uploadContentWithCompletion:(void(^)(BOOL isSuccess, NSError * _Nonnull error))completion;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

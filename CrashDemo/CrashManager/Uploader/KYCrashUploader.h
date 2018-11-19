@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KYCrashUploader : NSObject <KYCrashLogUploadOperation>
 
+
 @end
 
 NS_ASSUME_NONNULL_END

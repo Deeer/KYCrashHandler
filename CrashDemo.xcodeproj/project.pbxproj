@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1814E2A721A293F5004E8C39 /* KYCrashRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1814E2A621A293F5004E8C39 /* KYCrashRepairViewController.m */; };
 		183F9C0B219D1F1A00B431D7 /* AppDelegate+KYCrashCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F9C0A219D1F1A00B431D7 /* AppDelegate+KYCrashCollection.m */; };
 		183F9C0E219D49EA00B431D7 /* KYTimeRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F9C0D219D49EA00B431D7 /* KYTimeRecorder.m */; };
 		183F9C11219D4AEC00B431D7 /* KYCrashLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F9C10219D4AEC00B431D7 /* KYCrashLocalStorage.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1814E2A521A293F5004E8C39 /* KYCrashRepairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYCrashRepairViewController.h; sourceTree = "<group>"; };
+		1814E2A621A293F5004E8C39 /* KYCrashRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYCrashRepairViewController.m; sourceTree = "<group>"; };
 		183F9C09219D1F1A00B431D7 /* AppDelegate+KYCrashCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KYCrashCollection.h"; sourceTree = "<group>"; };
 		183F9C0A219D1F1A00B431D7 /* AppDelegate+KYCrashCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+KYCrashCollection.m"; sourceTree = "<group>"; };
 		183F9C0C219D49EA00B431D7 /* KYTimeRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYTimeRecorder.h; sourceTree = "<group>"; };
@@ -61,6 +64,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1814E29E21A289E5004E8C39 /* Uploader */ = {
+			isa = PBXGroup;
+			children = (
+				183F9C15219D4C1100B431D7 /* KYCrashLogUploadOperation.h */,
+				183F9C21219D90A900B431D7 /* KYCrashUploader.h */,
+				183F9C22219D90A900B431D7 /* KYCrashUploader.m */,
+			);
+			path = Uploader;
+			sourceTree = "<group>";
+		};
+		1814E29F21A28A01004E8C39 /* Repair */ = {
+			isa = PBXGroup;
+			children = (
+				1814E2A521A293F5004E8C39 /* KYCrashRepairViewController.h */,
+				1814E2A621A293F5004E8C39 /* KYCrashRepairViewController.m */,
+			);
+			path = Repair;
+			sourceTree = "<group>";
+		};
 		183F9C16219D4C6A00B431D7 /* IO */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +137,8 @@
 		1879A58F219C077E0011672C /* CrashManager */ = {
 			isa = PBXGroup;
 			children = (
+				1814E29F21A28A01004E8C39 /* Repair */,
+				1814E29E21A289E5004E8C39 /* Uploader */,
 				183F9C1A219D694B00B431D7 /* Category */,
 				183F9C16219D4C6A00B431D7 /* IO */,
 				183F9C09219D1F1A00B431D7 /* AppDelegate+KYCrashCollection.h */,
@@ -123,11 +147,8 @@
 				183F9C0D219D49EA00B431D7 /* KYTimeRecorder.m */,
 				183F9C12219D4B6300B431D7 /* KYExceptionHandler.h */,
 				183F9C13219D4B6300B431D7 /* KYExceptionHandler.m */,
-				183F9C15219D4C1100B431D7 /* KYCrashLogUploadOperation.h */,
 				18AB8776219EA4DE00499E56 /* KYCrashBusinessHandler.h */,
 				18AB8777219EA4DE00499E56 /* KYCrashBusinessHandler.m */,
-				183F9C21219D90A900B431D7 /* KYCrashUploader.h */,
-				183F9C22219D90A900B431D7 /* KYCrashUploader.m */,
 			);
 			path = CrashManager;
 			sourceTree = "<group>";
@@ -212,6 +233,7 @@
 				183F9C0B219D1F1A00B431D7 /* AppDelegate+KYCrashCollection.m in Sources */,
 				183F9C14219D4B6300B431D7 /* KYExceptionHandler.m in Sources */,
 				1879A57B219C076E0011672C /* AppDelegate.m in Sources */,
+				1814E2A721A293F5004E8C39 /* KYCrashRepairViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

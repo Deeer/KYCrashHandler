@@ -45,6 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
  @return 是否存在
  */
 + (BOOL)existFileAtPath:(NSString *)path;
+
+
+/**
+ 是否存在crash文件
+ */
++ (BOOL)existCrashFiles;
 @end
 
 NS_ASSUME_NONNULL_END

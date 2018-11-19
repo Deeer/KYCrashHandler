@@ -8,18 +8,19 @@
 
 #import "AppDelegate+KYCrashCollection.h"
 #import <objc/runtime.h>
-
+#import "KYTimeRecorder.h"
 #import "KYCrashBusinessHandler.h"
+#import "KYCrashLocalStorage.h"
 @implementation AppDelegate (KYCrashCollection)
 #pragma mark - lifeCyele
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // 进行方法替换
-        [self swizzleOriginMethod:@selector(applicationDidFinishLaunching:)
+        [self swizzleOriginMethod:@selector(application:didFinishLaunchingWithOptions:)
                WithExchangeMethod:@selector(swizzled_application:didFinishLaunchingWithOptions:)];
         [self swizzleOriginMethod:@selector(applicationWillTerminate:)
-               WithExchangeMethod:@selector(swizzleOriginMethod:WithExchangeMethod:)];
+               WithExchangeMethod:@selector(swizzled_applicationWillTerminate:)];
     });
 }
 
@@ -27,34 +28,44 @@
 - (BOOL)swizzled_application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    // 记录启动时间
+    [KYTimeRecorder recordTimeWithType:KYTimeRecordTypeLauncher];
     
     // 本地存在crash文件
-    if (1) {
-        // TODO: 处理连续崩溃逻辑: 若本地存在crash 文件 进入的 连续闪退判段逻辑
-        //
-        if (1) { // TODO:符合连续闪退
-                 // TODO:进入修复流程 -- 显示页面 or 直接修复
-            
-            
-        }
+    if (1 || [KYCrashLocalStorage existCrashFiles]) {
+        /******************闪退处理**********************/
 
-        // 日志部分逻辑
-        [[KYCrashBusinessHandler shareInstance] uploadContentWithCompletion:^(BOOL isSuccess, NSError * _Nonnull error) {
-            // 我也不知道这里可以做什么...
-        }];
-        
+        // 进入闪退判断逻辑
+        if (1 || [KYTimeRecorder isInContinuousTerminateStatus]) {
+            
+            // 进行修复工作
+            [[KYCrashBusinessHandler shareInstance] showRepairWithWindow:self.window completion:^{
+                // 调用原始方法
+                [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
+            }];
+            
+        } else {
+            
+            /*****************日志部分********************/
+            [[KYCrashBusinessHandler shareInstance] uploadContentWithCompletion:^(BOOL isSuccess, NSError * _Nonnull error) {
+                
+            }];
+            
+            // 调用原始方法
+            [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
+        }
     } else {
         // 调用原始方法
-        [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
+        return [self swizzled_application:application didFinishLaunchingWithOptions:launchOptions];
     }
     return YES;
 }
 
 - (void)swizzled_applicationWillTerminate:(UIApplication *)application {
     
-    // TODO: 记录崩溃冲突时间
-    
-    // TODO: 调用原生方法
+    // 记录终止时间
+    [KYTimeRecorder recordTimeWithType:KYTimeRecordTypeTerminate];
+    // 调用原生方法
     [self swizzled_applicationWillTerminate:application];
 }
 
@@ -63,7 +74,6 @@
 
 // swizzled
 + (void)swizzleOriginMethod:(SEL)originSelector WithExchangeMethod:(SEL)swizzledSelector {
-    
     Class class = [super class];
     
     Method orginalMethod = class_getInstanceMethod(class, originSelector);

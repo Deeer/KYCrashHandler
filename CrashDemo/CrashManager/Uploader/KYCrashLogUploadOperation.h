@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol KYCrashLogUploadOperation <NSObject>
 
+@required
 /**
  上传方法抽取
 

@@ -9,8 +9,10 @@
 #import "KYCrashBusinessHandler.h"
 #import "KYCrashLogUploadOperation.h"
 #import "KYCrashLocalStorage.h"
-#import "KYCrashUploader.h"
+
 #import <objc/runtime.h>
+#import "KYCrashUploader.h"
+#import "KYCrashRepairViewController.h"
 
 static inline NSArray * findSubClass(Class certainClass) {
     
@@ -41,6 +43,8 @@ static inline NSArray * findSubClass(Class certainClass) {
 
 @property(nonatomic, strong) KYCrashUploader *uploader;
 
+@property(nonatomic, strong) KYCrashRepairViewController *repairViewController;
+
 @end
 
 @implementation KYCrashBusinessHandler
@@ -68,7 +72,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 
 #pragma mark - options
 + (void)openLog:(BOOL)isopen {
-    // TODO: 单独时间log类
+    // TODO: 单独log类
     //
 }
 
@@ -77,10 +81,50 @@ static inline NSArray * findSubClass(Class certainClass) {
     _customContent = content;
 }
 
+- (void)showRepairWithWindow:(UIWindow *)window completion:(void(^)(void))completion {
+    // 是否自定义界面的
+    if (self.repairViewController) {
+        // 回调交给自类去做去
+        [self.repairViewController getFinshRepairWithCallback:completion];
+        window.rootViewController = self.repairViewController;
+        [window makeKeyAndVisible];
+    } else {
+        // 显示默认的弹窗效果
+        UIViewController *vc = [[UIViewController alloc] init];
+        vc.view.backgroundColor = [UIColor purpleColor];
+        window.rootViewController = vc;
+        [window makeKeyAndVisible];
+        [vc presentViewController:[self showAlertWtihCompletion:completion] animated:YES completion:nil];
+    }
+}
+
+- (UIAlertController *)showAlertWtihCompletion:(void(^)(void))completion {
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"修复" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completion();
+    }];
+    [alertVc addAction:cancleAction];
+    [alertVc addAction:confirmAction];
+    return alertVc;
+}
+
 
 #pragma mark - setterAndGetter
+
+- (KYCrashRepairViewController *)repairViewController {
+    if (!_repairViewController) {
+        Class class = [findSubClass([KYCrashRepairViewController class]) firstObject];
+        if (!class) {
+            return nil;
+        }
+        _repairViewController = [[class alloc] init];
+    }
+    return _repairViewController;
+}
+
 - (KYCrashUploader *)uploader {
-    if (_uploader) {
+    if (!_uploader) {
         Class class = [findSubClass([KYCrashUploader class]) firstObject];
         
         NSAssert(class, @"请继承 KYCrashUploader 以实现日志上传功能");

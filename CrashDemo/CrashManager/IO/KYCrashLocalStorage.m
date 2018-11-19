@@ -92,11 +92,16 @@
 }
 
 
++ (BOOL)existCrashFiles {
+    return [self existFileAtPath: [self crashFileDirectoryPath]];
+}
+
 + (BOOL)existFileAtPath:(NSString *)path {
     NSFileManager *manager = [NSFileManager defaultManager];
     BOOL exist =  [manager fileExistsAtPath:path];
     return exist;
 }
+
 
 
 #pragma mark - privateMethod
