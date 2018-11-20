@@ -81,7 +81,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 #pragma mark - options
 + (void)openLog:(BOOL)isopen {
     // TODO: 单独log类
-    // 
+    //
 }
 
 - (void)addCustionContent:(NSString *)content {
