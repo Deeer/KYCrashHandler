@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186AC0B921AC1A66002EE9A5 /* UIApplication+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AC0B821AC1A65002EE9A5 /* UIApplication+Test.m */; };
 		1879A57E219C076E0011672C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879A57D219C076E0011672C /* ViewController.m */; };
 		1879A586219C076F0011672C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1879A584219C076F0011672C /* LaunchScreen.storyboard */; };
 		18E2F2A721A3B6C000B2B41D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879A57A219C076E0011672C /* AppDelegate.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		186AC0B721AC1A65002EE9A5 /* UIApplication+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Test.h"; sourceTree = "<group>"; };
+		186AC0B821AC1A65002EE9A5 /* UIApplication+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Test.m"; sourceTree = "<group>"; };
 		1879A576219C076E0011672C /* CrashDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1879A579219C076E0011672C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1879A57A219C076E0011672C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -118,10 +121,12 @@
 				18E2F2D621A4233200B2B41D /* NSDate+TimeTool.m */,
 				18E2F2DE21A4233200B2B41D /* KYExceptionHandler.h */,
 				18E2F2D521A4233200B2B41D /* KYExceptionHandler.m */,
-				18E2F2DA21A4233200B2B41D /* KYCrashRepairViewController.m */,
 				18E2F2DF21A4233200B2B41D /* KYCrashLogUploadOperation.h */,
+				18E2F2DA21A4233200B2B41D /* KYCrashRepairViewController.m */,
 				18E2F2DC21A4233200B2B41D /* KYCrashUploader.m */,
 				18E2F2DB21A4233200B2B41D /* KYCrashBusinessHandler.m */,
+				186AC0B721AC1A65002EE9A5 /* UIApplication+Test.h */,
+				186AC0B821AC1A65002EE9A5 /* UIApplication+Test.m */,
 			);
 			name = KYCrashHandler;
 			path = CrashDemo/KYCrashHandler;
@@ -210,6 +215,7 @@
 				18E2F2A921A3BDAC00B2B41D /* main.m in Sources */,
 				18E2F2EB21A4233200B2B41D /* KYCrashUploader.m in Sources */,
 				18E2F2EC21A4233200B2B41D /* KYTimeRecorder.m in Sources */,
+				186AC0B921AC1A66002EE9A5 /* UIApplication+Test.m in Sources */,
 				18E2F2A721A3B6C000B2B41D /* AppDelegate.m in Sources */,
 				18E2F2E821A4233200B2B41D /* KYCrashLocalStorage.m in Sources */,
 				18E2F2EA21A4233200B2B41D /* KYCrashBusinessHandler.m in Sources */,

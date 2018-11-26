@@ -20,11 +20,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KYCrashBusinessHandler : NSObject
 
-
+@class KYCrashRepairViewController
 @property(nonatomic, readonly ,copy) NSString *customContent;
 
 + (KYCrashBusinessHandler *)shareInstance;
 
+
+/**
+  返回当前修复界面实例,以方便在设置中进行处理
+ */
++ (KYCrashRepairViewController *)currentRepairViewController;
 
 /**
  是否存在上传器

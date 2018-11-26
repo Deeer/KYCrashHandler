@@ -59,11 +59,11 @@ static inline NSArray * findSubClass(Class certainClass) {
 }
 
 - (BOOL)exsitRepairViewController {
-    return self.repairViewController;
+    return (BOOL)self.repairViewController;
 }
 
 - (BOOL)exsitUploader {
-    return self.uploader;
+    return (BOOL)self.uploader;
 }
 
 #pragma mark - logical content
@@ -79,11 +79,14 @@ static inline NSArray * findSubClass(Class certainClass) {
 }
 
 #pragma mark - options
+// TODO: 想放置一些输出,但是感觉没有太大作用
 + (void)openLog:(BOOL)isopen {
     // TODO: 单独log类
     //
 }
 
+// TODO:
+// - 最初是想在发送crash 时记录一些东西,如用户数据等
 - (void)addCustionContent:(NSString *)content {
     // 设置每个crash文件中的自定义内容
     _customContent = content;
@@ -100,6 +103,10 @@ static inline NSArray * findSubClass(Class certainClass) {
 }
 
 #pragma mark - setterAndGetter
+
+- (KYCrashRepairViewController *)currentRepairViewController {
+    return self.repairViewController;
+}
 
 - (KYCrashRepairViewController *)repairViewController {
     if (!_repairViewController) {
