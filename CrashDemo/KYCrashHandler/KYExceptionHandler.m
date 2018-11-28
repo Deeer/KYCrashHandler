@@ -41,10 +41,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     // 加入自定义部分
     KYCrashBusinessHandler *handler = [KYCrashBusinessHandler shareInstance];
-    NSString *customConten = handler.customContent;
-    if (customConten && customConten.length > 0) {
-        [exceptionDict setValue:customConten forKey:@"customContent"];
-    }
     
     // 写入本地文件中
     [KYCrashLocalStorage saveCrashLogLocallyWithDict:exceptionDict];

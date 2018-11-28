@@ -79,18 +79,6 @@ static inline NSArray * findSubClass(Class certainClass) {
 }
 
 #pragma mark - options
-// TODO: 想放置一些输出,但是感觉没有太大作用
-+ (void)openLog:(BOOL)isopen {
-    // TODO: 单独log类
-    //
-}
-
-// TODO:
-// - 最初是想在发送crash 时记录一些东西,如用户数据等
-- (void)addCustionContent:(NSString *)content {
-    // 设置每个crash文件中的自定义内容
-    _customContent = content;
-}
 
 - (void)showRepairInterfaceWithWindow:(UIWindow *)window completion:(void(^)(void))completion {
     if (self.repairViewController) {
@@ -111,7 +99,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 - (KYCrashRepairViewController *)repairViewController {
     if (!_repairViewController) {
         Class class = [findSubClass([KYCrashRepairViewController class]) firstObject];
-        NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
+//        NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
 
         _repairViewController = [[class alloc] init];
     }
@@ -121,9 +109,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 - (KYCrashUploader *)uploader {
     if (!_uploader) {
         Class class = [findSubClass([KYCrashUploader class]) firstObject];
-        
-        NSAssert(class, @"❌ 请继承 KYCrashUploader 以实现日志上传功能");
-        
+//        NSAssert(class, @"❌ 请继承 KYCrashUploader 以实现日志上传功能");
         _uploader = [[class alloc] init];
     }
     return _uploader;

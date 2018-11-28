@@ -17,11 +17,10 @@ typedef NS_ENUM(NSInteger, KYRepairInterfaceType) {
 };
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class KYCrashRepairViewController;
 @interface KYCrashBusinessHandler : NSObject
 
-@class KYCrashRepairViewController
-@property(nonatomic, readonly ,copy) NSString *customContent;
+
 
 + (KYCrashBusinessHandler *)shareInstance;
 
