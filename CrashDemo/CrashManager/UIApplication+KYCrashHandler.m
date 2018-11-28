@@ -22,6 +22,8 @@
             
         } error:NULL];
         
+        
+        
         [instance aspect_hookSelector:@selector(applicationWillTerminate:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo){
             NSLog(@"2----params %@",aspectInfo.arguments);
         } error:NULL];
