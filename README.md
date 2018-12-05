@@ -73,4 +73,4 @@ pod install
 - 2.Inheritant form `KYCrashUploader` to handle upload businiess.
 
 ## TODO 
-To be more **powerful** && **more resonable**
+To be more **powerful** && more **resonable**
