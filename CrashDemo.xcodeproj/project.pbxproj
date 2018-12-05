@@ -55,7 +55,7 @@
 		18E2F2DF21A4233200B2B41D /* KYCrashLogUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashLogUploadOperation.h; sourceTree = "<group>"; };
 		18E2F2E121A4233200B2B41D /* KYTimeRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYTimeRecorder.m; sourceTree = "<group>"; };
 		18E2F2E321A4233200B2B41D /* KYCrashLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashLocalStorage.h; sourceTree = "<group>"; };
-		18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCrashBusinessHandler.h; path = CrashDemo/KYCrashBusinessHandler.h; sourceTree = SOURCE_ROOT; };
+		18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCrashBusinessHandler.h; path = CrashDemo/Source/KYCrashBusinessHandler.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,20 +88,13 @@
 		1879A578219C076E0011672C /* CrashDemo */ = {
 			isa = PBXGroup;
 			children = (
+				18AA5C2021B7BE0A00AB0B62 /* Source */,
 				1879A579219C076E0011672C /* AppDelegate.h */,
 				1879A57A219C076E0011672C /* AppDelegate.m */,
 				1879A57C219C076E0011672C /* ViewController.h */,
 				1879A57D219C076E0011672C /* ViewController.m */,
-				18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */,
-				18E2F2DB21A4233200B2B41D /* KYCrashBusinessHandler.m */,
 				18AA5C1D21B7BB3000AB0B62 /* KYTestRepairViewController.h */,
 				18AA5C1E21B7BB3000AB0B62 /* KYTestRepairViewController.m */,
-				18AA5C1921B7B96200AB0B62 /* Interfaces */,
-				18AA5C1A21B7B99B00AB0B62 /* CrashHandler */,
-				18AA5C1621B7B81000AB0B62 /* Category */,
-				18AA5C1521B7B7A000AB0B62 /* Storeage */,
-				18AA5C1421B7B77D00AB0B62 /* Lib */,
-				18AA5C1321B7B71800AB0B62 /* CrashHandlerCore */,
 				1879A57F219C076E0011672C /* Main.storyboard */,
 				1879A582219C076F0011672C /* Assets.xcassets */,
 				18E2F2AA21A3D87300B2B41D /* Info.plist */,
@@ -184,6 +177,21 @@
 				18E2F2D521A4233200B2B41D /* KYExceptionHandler.m */,
 			);
 			path = CrashHandler;
+			sourceTree = "<group>";
+		};
+		18AA5C2021B7BE0A00AB0B62 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */,
+				18E2F2DB21A4233200B2B41D /* KYCrashBusinessHandler.m */,
+				18AA5C1921B7B96200AB0B62 /* Interfaces */,
+				18AA5C1A21B7B99B00AB0B62 /* CrashHandler */,
+				18AA5C1621B7B81000AB0B62 /* Category */,
+				18AA5C1521B7B7A000AB0B62 /* Storeage */,
+				18AA5C1421B7B77D00AB0B62 /* Lib */,
+				18AA5C1321B7B71800AB0B62 /* CrashHandlerCore */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
