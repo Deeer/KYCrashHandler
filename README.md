@@ -9,4 +9,7 @@
 
 ## 实际效果
 
+![崩溃界面效果](https://github.com/Deeer/KYCrashHandler/blob/master/images/p.gif)
+
+
 
