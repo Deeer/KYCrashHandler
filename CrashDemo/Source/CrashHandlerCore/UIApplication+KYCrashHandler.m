@@ -11,9 +11,6 @@
 #import "KYTimeRecorder.h"
 #import "KYCrashBusinessHandler.h"
 #import "KYCrashLocalStorage.h"
-#import <objc/runtime.h>
-
-#import "KYTestRepairViewController.h"
 #import "KYCrashRepairViewController.h"
 #import "UIApplication+FindRepairViewController.h"
 @implementation UIApplication (KYCrashHandler)

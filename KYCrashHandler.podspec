@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "KYCrashHandler"
-  s.version      = "0.0.7"
+  s.version      = "0.0.7.1"
   s.summary      = "a tool to protect from crash and catch crashes."
   s.homepage     = "https://github.com/Deeer/KYCrashHandler"
   s.license      = { :type => "MIT", :file => "LICENSE" }
