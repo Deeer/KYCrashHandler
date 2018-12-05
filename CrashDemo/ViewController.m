@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[[NSMutableArray alloc] init] addObject:nil];
     UIButton *btn = [[UIButton alloc] init];
     [btn addTarget:self action:@selector(popAction) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"试一下" forState:UIControlStateNormal];

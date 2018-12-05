@@ -21,7 +21,6 @@
     ViewController *vc = [[ViewController alloc] init];
     self.window.rootViewController = vc;
     vc.view.backgroundColor = [UIColor grayColor];
-    
     return YES;
 }
 

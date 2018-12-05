@@ -13,7 +13,9 @@
 #import "KYCrashLocalStorage.h"
 #import <objc/runtime.h>
 
-
+#import "KYTestRepairViewController.h"
+#import "KYCrashRepairViewController.h"
+#import "UIApplication+FindRepairViewController.h"
 @implementation UIApplication (KYCrashHandler)
 
 + (void)load {
@@ -34,16 +36,20 @@
             if ([KYCrashLocalStorage existCrashFiles]) {
                 
                 // 进入闪退判断逻辑  && 继承并实现修复界面
-                if ([[KYCrashBusinessHandler shareInstance] exsitRepairViewController]
-                    && [KYTimeRecorder isInContinuousTerminateStatus] ) {
-                    // 为修复界面提供window用以显示
-                    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-                    [aspectInfo.instance setWindow:window];
-                    // 进行修复工作
-                    [[KYCrashBusinessHandler shareInstance] showRepairInterfaceWithWindow:window completion:^{
-                        // 调用原始方法
-                        [aspectInfo.originalInvocation invoke];
-                    }];
+                if ([self findRepairViewController] && // 存在修复界面
+                    [KYTimeRecorder isInContinuousTerminateStatus] ) { // 符合连续崩溃条件
+                    
+                        // 为修复界面提供window用以显示
+                        KYCrashRepairViewController *repairViewController = [self findRepairViewController];;
+                        UINavigationController *naVc= [[UINavigationController alloc] initWithRootViewController:repairViewController];
+                        UIWindow *window = [[UIApplication sharedApplication] delegate].window;
+                        window.rootViewController = naVc;
+                        [window makeKeyAndVisible];
+                
+                        // 执行修复回调
+                        [repairViewController didFinishRepairWithCompletion:^{
+                          [aspectInfo.originalInvocation invoke];
+                        }];
                     
                 } else {
                     // 调用原始方法
@@ -57,7 +63,7 @@
             
         } error:NULL];
         
-        
+        // hook
         [instance aspect_hookSelector:@selector(applicationWillTerminate:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo){
             // 记录终止时间
             [KYTimeRecorder recordTimeWithType:KYTimeRecordTypeTerminate];

@@ -9,41 +9,12 @@
 #import "KYCrashBusinessHandler.h"
 #import "KYCrashLogUploadOperation.h"
 #import "KYCrashLocalStorage.h"
-
-#import <objc/runtime.h>
 #import "KYCrashUploader.h"
-#import "KYCrashRepairViewController.h"
-
-static inline NSArray * findSubClass(Class certainClass) {
-    
-    int numOfSubclasses = 0;
-    Class *classes = NULL;
-    // 获取所有已注册的类
-    numOfSubclasses = objc_getClassList(NULL, 0);
-    
-    if (numOfSubclasses <= 0) {
-        return [NSMutableArray array];
-    }
-    
-    classes = (Class *)malloc(sizeof(Class) * numOfSubclasses);
-    objc_getClassList(classes, numOfSubclasses);
-    NSArray *classArray = @[];
-    for (int i = 0; i < numOfSubclasses; i++) {
-        if (certainClass == class_getSuperclass(classes[i])) {
-            classArray = @[classes[i]];
-            break;
-        }
-    }
-    
-    free(classes);
-    return classArray;
-}
+#import "KYClassFinder.h"
 
 @interface KYCrashBusinessHandler()
 
 @property(nonatomic, strong) KYCrashUploader *uploader;
-
-@property(nonatomic, strong) KYCrashRepairViewController *repairViewController;
 
 @end
 
@@ -58,9 +29,7 @@ static inline NSArray * findSubClass(Class certainClass) {
     return handler;
 }
 
-- (BOOL)exsitRepairViewController {
-    return (BOOL)self.repairViewController;
-}
+#pragma mark - interfaceMethod
 
 - (BOOL)exsitUploader {
     return (BOOL)self.uploader;
@@ -78,33 +47,7 @@ static inline NSArray * findSubClass(Class certainClass) {
     }];
 }
 
-#pragma mark - options
-
-- (void)showRepairInterfaceWithWindow:(UIWindow *)window completion:(void(^)(void))completion {
-    if (self.repairViewController) {
-        // 设置修复界面
-        UINavigationController *naVc= [[UINavigationController alloc] initWithRootViewController:self.repairViewController];
-        window.rootViewController = naVc;
-        [window makeKeyAndVisible];
-        // 传入回调
-        [self.repairViewController didFinishRepairWithCompletion:completion];
-    }
-}
-
 #pragma mark - setterAndGetter
-
-- (KYCrashRepairViewController *)currentRepairViewController {
-    return self.repairViewController;
-}
-
-- (KYCrashRepairViewController *)repairViewController {
-    if (!_repairViewController) {
-        Class class = [findSubClass([KYCrashRepairViewController class]) firstObject];
-        NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
-        _repairViewController = [[class alloc] init];
-    }
-    return _repairViewController;
-}
 
 - (KYCrashUploader *)uploader {
     if (!_uploader) {

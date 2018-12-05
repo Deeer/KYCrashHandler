@@ -20,9 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor orangeColor];
-    
+    self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.tryBtn];
     self.tryBtn.frame = CGRectMake(0, 0, 100, 60);
     self.tryBtn.center = self.view.center;
@@ -31,7 +30,6 @@
 
 - (void)didFinishRepairWithCompletion:(finishedRepairCallback)block {
     // 做一些修复工作
-    
 
     // 完成之后进行跳转
     self.myBlock = block;
