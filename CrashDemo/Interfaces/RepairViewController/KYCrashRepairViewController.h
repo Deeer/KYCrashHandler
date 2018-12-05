@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  交给子类重写
  */
-- (void)didFinishRepairWithCompletion:(nonnull finishedRepairCallback)block NS_REQUIRES_SUPER;
+- (void)didFinishRepairWithCompletion:(nonnull finishedRepairCallback)block;
 @end
 
 NS_ASSUME_NONNULL_END

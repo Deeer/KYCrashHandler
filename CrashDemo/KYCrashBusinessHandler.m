@@ -85,7 +85,6 @@ static inline NSArray * findSubClass(Class certainClass) {
         // 设置修复界面
         UINavigationController *naVc= [[UINavigationController alloc] initWithRootViewController:self.repairViewController];
         window.rootViewController = naVc;
-        self.repairViewController.hidesBottomBarWhenPushed = YES;
         [window makeKeyAndVisible];
         // 传入回调
         [self.repairViewController didFinishRepairWithCompletion:completion];

@@ -11,6 +11,7 @@
 		18013BB221AEB75800FC5835 /* UIApplication+KYCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18013BB121AEB75800FC5835 /* UIApplication+KYCrashHandler.m */; };
 		1879A57E219C076E0011672C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879A57D219C076E0011672C /* ViewController.m */; };
 		1879A586219C076F0011672C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1879A584219C076F0011672C /* LaunchScreen.storyboard */; };
+		18AA5C1F21B7BB3000AB0B62 /* KYTestRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA5C1E21B7BB3000AB0B62 /* KYTestRepairViewController.m */; };
 		18E2F2A721A3B6C000B2B41D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879A57A219C076E0011672C /* AppDelegate.m */; };
 		18E2F2A821A3BD8200B2B41D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1879A57F219C076E0011672C /* Main.storyboard */; };
 		18E2F2A921A3BDAC00B2B41D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879A588219C076F0011672C /* main.m */; };
@@ -39,6 +40,8 @@
 		1879A588219C076F0011672C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18AA5C1B21B7B9C800AB0B62 /* KYCrashUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashUploader.h; sourceTree = "<group>"; };
 		18AA5C1C21B7BA1300AB0B62 /* KYCrashRepairViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashRepairViewController.h; sourceTree = "<group>"; };
+		18AA5C1D21B7BB3000AB0B62 /* KYTestRepairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYTestRepairViewController.h; sourceTree = "<group>"; };
+		18AA5C1E21B7BB3000AB0B62 /* KYTestRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYTestRepairViewController.m; sourceTree = "<group>"; };
 		18E2F2AA21A3D87300B2B41D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18E2F2D521A4233200B2B41D /* KYExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYExceptionHandler.m; sourceTree = "<group>"; };
 		18E2F2D621A4233200B2B41D /* NSDate+TimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeTool.m"; sourceTree = "<group>"; };
@@ -52,7 +55,7 @@
 		18E2F2DF21A4233200B2B41D /* KYCrashLogUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashLogUploadOperation.h; sourceTree = "<group>"; };
 		18E2F2E121A4233200B2B41D /* KYTimeRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYTimeRecorder.m; sourceTree = "<group>"; };
 		18E2F2E321A4233200B2B41D /* KYCrashLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashLocalStorage.h; sourceTree = "<group>"; };
-		18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCrashBusinessHandler.h; path = CrashDemo/CrashManager/KYCrashBusinessHandler.h; sourceTree = SOURCE_ROOT; };
+		18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCrashBusinessHandler.h; path = CrashDemo/KYCrashBusinessHandler.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +92,10 @@
 				1879A57A219C076E0011672C /* AppDelegate.m */,
 				1879A57C219C076E0011672C /* ViewController.h */,
 				1879A57D219C076E0011672C /* ViewController.m */,
-				1879A58F219C077E0011672C /* CrashManager */,
+				18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */,
+				18E2F2DB21A4233200B2B41D /* KYCrashBusinessHandler.m */,
+				18AA5C1D21B7BB3000AB0B62 /* KYTestRepairViewController.h */,
+				18AA5C1E21B7BB3000AB0B62 /* KYTestRepairViewController.m */,
 				18AA5C1921B7B96200AB0B62 /* Interfaces */,
 				18AA5C1A21B7B99B00AB0B62 /* CrashHandler */,
 				18AA5C1621B7B81000AB0B62 /* Category */,
@@ -103,15 +109,6 @@
 				1879A588219C076F0011672C /* main.m */,
 			);
 			path = CrashDemo;
-			sourceTree = "<group>";
-		};
-		1879A58F219C077E0011672C /* CrashManager */ = {
-			isa = PBXGroup;
-			children = (
-				18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */,
-				18E2F2DB21A4233200B2B41D /* KYCrashBusinessHandler.m */,
-			);
-			path = CrashManager;
 			sourceTree = "<group>";
 		};
 		18AA5C1321B7B71800AB0B62 /* CrashHandlerCore */ = {
@@ -269,6 +266,7 @@
 				18E2F2EA21A4233200B2B41D /* KYCrashBusinessHandler.m in Sources */,
 				1879A57E219C076E0011672C /* ViewController.m in Sources */,
 				18E2F2E721A4233200B2B41D /* NSDate+TimeTool.m in Sources */,
+				18AA5C1F21B7BB3000AB0B62 /* KYTestRepairViewController.m in Sources */,
 				18E2F2E921A4233200B2B41D /* KYCrashRepairViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

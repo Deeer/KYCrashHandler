@@ -31,10 +31,10 @@
             
             // 处理闪退问题
             // 本地存在crash文件
-            if ([KYCrashLocalStorage existCrashFiles]) {
+            if (1 || [KYCrashLocalStorage existCrashFiles]) {
                 
                 // 进入闪退判断逻辑  && 继承并实现修复界面
-                if ( [[KYCrashBusinessHandler shareInstance] exsitRepairViewController]
+                if (1|| [[KYCrashBusinessHandler shareInstance] exsitRepairViewController]
                     && [KYTimeRecorder isInContinuousTerminateStatus] ) {
                     // 为修复界面提供window用以显示
                     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
