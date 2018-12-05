@@ -32,15 +32,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 @implementation KYExceptionHandler
 
+// 处理崩溃信息写入文件
 + (void)handleException:(NSException *)exception {
     // 内容组织
     NSMutableDictionary *exceptionDict = [NSMutableDictionary dictionary];
     [exceptionDict setValue:exception.name forKey:@"name"];
     [exceptionDict setValue:exception.reason forKey:@"reason"];
     [exceptionDict setValue:exception.callStackSymbols forKey:@"callStackSymbols"];
-    
-    // 加入自定义部分
-    KYCrashBusinessHandler *handler = [KYCrashBusinessHandler shareInstance];
     
     // 写入本地文件中
     [KYCrashLocalStorage saveCrashLogLocallyWithDict:exceptionDict];

@@ -82,10 +82,12 @@ static inline NSArray * findSubClass(Class certainClass) {
 
 - (void)showRepairInterfaceWithWindow:(UIWindow *)window completion:(void(^)(void))completion {
     if (self.repairViewController) {
-        // 设置keywindow
-        window.rootViewController = self.repairViewController;
+        // 设置修复界面
+        UINavigationController *naVc= [[UINavigationController alloc] initWithRootViewController:self.repairViewController];
+        window.rootViewController = naVc;
+        self.repairViewController.hidesBottomBarWhenPushed = YES;
         [window makeKeyAndVisible];
-        // 传入回掉
+        // 传入回调
         [self.repairViewController didFinishRepairWithCompletion:completion];
     }
 }
@@ -99,8 +101,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 - (KYCrashRepairViewController *)repairViewController {
     if (!_repairViewController) {
         Class class = [findSubClass([KYCrashRepairViewController class]) firstObject];
-//        NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
-
+        NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
         _repairViewController = [[class alloc] init];
     }
     return _repairViewController;
@@ -109,7 +110,7 @@ static inline NSArray * findSubClass(Class certainClass) {
 - (KYCrashUploader *)uploader {
     if (!_uploader) {
         Class class = [findSubClass([KYCrashUploader class]) firstObject];
-//        NSAssert(class, @"❌ 请继承 KYCrashUploader 以实现日志上传功能");
+        NSAssert(class, @"❌ 请继承 KYCrashUploader 以实现日志上传功能");
         _uploader = [[class alloc] init];
     }
     return _uploader;

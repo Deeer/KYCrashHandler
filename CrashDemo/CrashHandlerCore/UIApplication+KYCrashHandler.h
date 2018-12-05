@@ -10,6 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+/**
+ 用于hook 相关方法
+ */
 @interface UIApplication (KYCrashHandler)
 
 @end
