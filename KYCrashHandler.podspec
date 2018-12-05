@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "KYCrashHandler"
-  s.version      = "0.0.7.1"
+  s.version      = "0.0.7.2"
   s.summary      = "a tool to protect from crash and catch crashes."
   s.homepage     = "https://github.com/Deeer/KYCrashHandler"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -13,3 +13,8 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation', 'UIKit'
   s.requires_arc = true #是否要求ARC
 end
+
+## command 
+## pod trunk push --use-libraries --allow-warnings --verbose
+## pod lib lint  --verbose --use-libraries --allow-warnings --no-clean
+##
