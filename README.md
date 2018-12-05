@@ -15,7 +15,7 @@ a simple and lightweight way to hanle the crash event ✈️ :]
 
 ## Some Logic 
 
-![]
+![logic](https://github.com/Deeer/KYCrashHandler/blob/master/images/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-12-05%20%E4%B8%8B%E5%8D%887.54.45.png)
 
 ## Installation
 
@@ -71,3 +71,6 @@ pod install
 
 - 1.Inheritant form `KYCrashRepairViewController`,Then implement  `didFinishRepairWithCompletion:`, you could do something       to do with the crash event(try to reset your database or clean some dirty data,etc)
 - 2.Inheritant form `KYCrashUploader` to handle upload businiess.
+
+## TODO 
+To be more **powerful** && **more resonable**
