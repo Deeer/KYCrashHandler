@@ -14,7 +14,10 @@
 
 + (KYCrashRepairViewController *)findRepairViewController {
     Class class = [findSubClass([KYCrashRepairViewController class]) firstObject];
-    NSAssert(class, @"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
+    if (!class) {
+        NSLog(@"❌ 请继承 KYCrashRepairViewController 以实现修复功能");
+        return nil;
+    }
     KYCrashRepairViewController *vc = [[class alloc] init];
     return vc;
 }

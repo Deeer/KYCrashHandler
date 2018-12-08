@@ -17,11 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (KYCrashBusinessHandler *)shareInstance;
 
-/**
- 是否存在上传器
- */
-- (BOOL)exsitUploader;
-
 #pragma mark - crash部分
 /**
  上传方式的

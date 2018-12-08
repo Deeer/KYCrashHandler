@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 初步设想是通过协议节藕对对象的强依赖关系
 @protocol KYCrashLogUploadOperation <NSObject>
 
 @required

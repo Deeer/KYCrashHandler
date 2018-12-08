@@ -29,12 +29,6 @@
     return handler;
 }
 
-#pragma mark - interfaceMethod
-
-- (BOOL)exsitUploader {
-    return (BOOL)self.uploader;
-}
-
 #pragma mark - logical content
 - (void)uploadContentWithCompletion:(void(^)(BOOL isSuccess, NSError * _Nonnull error))completion {
     NSAssert(!self.uploader, @"未设置上传对象");
@@ -52,7 +46,10 @@
 - (KYCrashUploader *)uploader {
     if (!_uploader) {
         Class class = [findSubClass([KYCrashUploader class]) firstObject];
-        NSAssert(class, @"❌ 请继承 KYCrashUploader 以实现日志上传功能");
+        if (!class) {
+            NSLog(@"❌ 请继承 KYCrashUploader 以实现日志上传功能");
+            return nil;
+        }
         _uploader = [[class alloc] init];
     }
     return _uploader;
