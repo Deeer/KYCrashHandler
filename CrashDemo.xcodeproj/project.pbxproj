@@ -23,6 +23,7 @@
 		18E2F2EA21A4233200B2B41D /* KYCrashBusinessHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2F2DB21A4233200B2B41D /* KYCrashBusinessHandler.m */; };
 		18E2F2EB21A4233200B2B41D /* KYCrashUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2F2DC21A4233200B2B41D /* KYCrashUploader.m */; };
 		18E2F2EC21A4233200B2B41D /* KYTimeRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E2F2E121A4233200B2B41D /* KYTimeRecorder.m */; };
+		937FA92D21E09162004DE566 /* KYSignalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 937FA92C21E09162004DE566 /* KYSignalHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		18E2F2E121A4233200B2B41D /* KYTimeRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYTimeRecorder.m; sourceTree = "<group>"; };
 		18E2F2E321A4233200B2B41D /* KYCrashLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCrashLocalStorage.h; sourceTree = "<group>"; };
 		18E2F2F121A424EC00B2B41D /* KYCrashBusinessHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCrashBusinessHandler.h; path = CrashDemo/Source/KYCrashBusinessHandler.h; sourceTree = SOURCE_ROOT; };
+		937FA92B21E09162004DE566 /* KYSignalHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KYSignalHandler.h; sourceTree = "<group>"; };
+		937FA92C21E09162004DE566 /* KYSignalHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYSignalHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 			children = (
 				18E2F2DE21A4233200B2B41D /* KYExceptionHandler.h */,
 				18E2F2D521A4233200B2B41D /* KYExceptionHandler.m */,
+				937FA92B21E09162004DE566 /* KYSignalHandler.h */,
+				937FA92C21E09162004DE566 /* KYSignalHandler.m */,
 			);
 			path = CrashHandler;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			files = (
 				18E2F2A921A3BDAC00B2B41D /* main.m in Sources */,
 				18AA5C4821B7E0B300AB0B62 /* UIApplication+FindRepairViewController.m in Sources */,
+				937FA92D21E09162004DE566 /* KYSignalHandler.m in Sources */,
 				18E2F2E621A4233200B2B41D /* KYExceptionHandler.m in Sources */,
 				18013BAC21AEB6E300FC5835 /* Aspects.m in Sources */,
 				18E2F2EB21A4233200B2B41D /* KYCrashUploader.m in Sources */,

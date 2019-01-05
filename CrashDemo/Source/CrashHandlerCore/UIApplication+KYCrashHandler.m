@@ -13,6 +13,7 @@
 #import "KYCrashLocalStorage.h"
 #import "KYCrashRepairViewController.h"
 #import "UIApplication+FindRepairViewController.h"
+#import "KYSignalHandler.h"
 @implementation UIApplication (KYCrashHandler)
 
 + (void)load {
@@ -23,11 +24,11 @@
         [instance aspect_hookSelector:@selector(application:didFinishLaunchingWithOptions:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo){
             // 注册崩溃日志收集函数
             NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+            // 注册信号量监听
+            [KYSignalHandler registSignaleHandler];
             // 记录启动时间
             [KYTimeRecorder recordTimeWithType:KYTimeRecordTypeLauncher];
-            
             // TODO: 之前做些什么
-            
             // 处理闪退问题
             // 本地存在crash文件
             if ([KYCrashLocalStorage existCrashFiles]) {
