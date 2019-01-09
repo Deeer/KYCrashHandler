@@ -20,7 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  处理exception
  */
-+ (void)hadnelException:(NSException *)exception;
++ (void)handleException:(NSException *)exception;
+
+/**
+ 获取当前线程的调用堆栈
+ */
++ (NSArray *)backtrace;
 @end
 
 NS_ASSUME_NONNULL_END
