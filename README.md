@@ -40,7 +40,9 @@ pod install
 │   └── NSDate+TimeTool.m
 ├── CrashHandler
 │   ├── KYExceptionHandler.h
-│   └── KYExceptionHandler.m
+│   ├── KYExceptionHandler.m
+│   ├── KYSignalHandler.h
+│   └── KYSignalHandler.m
 ├── CrashHandlerCore
 │   ├── KYClassFinder.h
 │   ├── UIApplication+FindRepairViewController.h
@@ -48,6 +50,9 @@ pod install
 │   ├── UIApplication+KYCrashHandler.h
 │   └── UIApplication+KYCrashHandler.m
 ├── Interfaces
+│   ├── KYExtraInfoPlugin
+│   │   ├── KYExtraInfoPlugin.h
+│   │   └── KYExtraInfoPlugin.m
 │   ├── RepairViewController
 │   │   ├── KYCrashRepairViewController.h
 │   │   └── KYCrashRepairViewController.m
