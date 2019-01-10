@@ -3,9 +3,10 @@
 ## Ability 
 
 - Catch Crash
-- Generate Crash file & Save it locally
-- Provide interface for uploading Crash file 
-- Provide interface for handling the instant crash
+- Generate Crash file & Save it locally.
+- Provide interface for uploading Crash file.
+- Provide interface for handling the instant crash.
+- Provide a plugin to grenerate related info about current env.
 
 a simple and lightweight way to hanle the crash event ✈️ :]
 
