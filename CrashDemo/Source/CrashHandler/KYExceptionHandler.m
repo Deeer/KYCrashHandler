@@ -10,6 +10,9 @@
 #import "KYCrashLocalStorage.h"
 #import "KYCrashBusinessHandler.h"
 #import "KYTimeRecorder.h"
+#import "KYClassFinder.h"
+
+#import "KYExtraInfoPlugin.h"
 
 // 处理文件内容
 void uncaughtExceptionHandler(NSException *exception) {
@@ -39,6 +42,14 @@ void uncaughtExceptionHandler(NSException *exception) {
     [exceptionDict setValue:exception.name forKey:@"name"];
     [exceptionDict setValue:exception.reason forKey:@"reason"];
     [exceptionDict setValue:exception.callStackSymbols forKey:@"callStackSymbols"];
+    
+    
+    // 写入崩溃时，存储额外的信息
+    Class class = [findSubClass([KYExtraInfoPlugin class]) firstObject];
+    if (class) {
+         KYExtraInfoPlugin * plugin = [[class alloc] init];
+        [exceptionDict setValue:[plugin generateExtraInfo] forKey:@"ExtraInfo"];
+    }
     
     // 写入本地文件中
     [KYCrashLocalStorage saveCrashLogLocallyWithDict:exceptionDict];

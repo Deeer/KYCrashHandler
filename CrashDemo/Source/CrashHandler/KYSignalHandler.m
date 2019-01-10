@@ -22,7 +22,6 @@ void handleSignal(int signal) {
     // 为了不阻塞线程
     dispatch_queue_t queue = dispatch_queue_create("KYCrashHandler.signal", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(queue, ^{
-        
         // 异步处理exception
         [KYSignalHandler performSelector:@selector(handleException:) withObject:ex afterDelay:0];
         // 主动关闭
